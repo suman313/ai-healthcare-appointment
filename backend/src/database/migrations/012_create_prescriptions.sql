@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS prescriptions (
+  id SERIAL PRIMARY KEY,
+  clinic_id INTEGER NOT NULL REFERENCES clinics(id) ON DELETE CASCADE,
+  medical_record_id INTEGER REFERENCES medical_records(id) ON DELETE SET NULL,
+  patient_id INTEGER NOT NULL REFERENCES patients(id) ON DELETE CASCADE,
+  doctor_id INTEGER NOT NULL REFERENCES doctors(id) ON DELETE CASCADE,
+  issued_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+  medications JSONB NOT NULL DEFAULT '[]',
+  notes TEXT,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
