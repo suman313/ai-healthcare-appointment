@@ -1,0 +1,17 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "shell": "powershell",
+            "command": "$json = $input | ConvertFrom-Json; $f = $json.tool_input.file_path; if ($f -and $f -like '*ai-healthcare-appointment*' -and $f -notlike '*CLAUDE.md*') { Write-Output '{\"hookSpecificOutput\":{\"hookEventName\":\"PostToolUse\",\"additionalContext\":\"A project file was just modified. If this change affects deployment, AWS infrastructure, URLs, environment variables, database schema, or project architecture — update CLAUDE.md to keep it accurate.\"}}' }",
+            "statusMessage": "Checking if CLAUDE.md needs updating..."
+          }
+        ]
+      }
+    ]
+  }
+}

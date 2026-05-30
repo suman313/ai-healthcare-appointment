@@ -2,7 +2,14 @@
   "permissions": {
     "allow": [
       "Bash(npm install:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Skill(update-config)",
+      "Skill(update-config:*)",
+      "Bash(mkdir -p \"d:/work/ai-healthcare-appointment/.claude\")",
+      "PowerShell(Get-Content \"d:\\\\work\\\\ai-healthcare-appointment\\\\.claude\\\\settings.json\" | ConvertFrom-Json | Select-Object -ExpandProperty hooks | Select-Object -ExpandProperty PostToolUse | ForEach-Object { $_.hooks[0].command })"
+    ],
+    "additionalDirectories": [
+      "d:\\work\\ai-healthcare-appointment\\.claude"
     ]
   }
 }
